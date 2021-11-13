@@ -22,8 +22,11 @@ Added functionality to the web application so that it could find the determinant
 
 Added simple error handling for non-integer inputs.
 
+### Session Five
+
+Added functionality so that the user can select n for the matrix.
+
 ## TO DO
 
-- Allow the user to select the size of the matrix
 - Clean up the UI to make it look nicer
 - Security?

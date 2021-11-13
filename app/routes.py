@@ -8,6 +8,12 @@ def index():
     n = 3
     return render_template("index.html", title='Home', n=n)
 
+
+@app.route('/index/<int:n>', methods=['GET', 'POST'])
+def matrix_size(n):
+    return render_template("index.html", title='Home', n=n)
+
+
 # Handle the matrix
 @app.route('/matrix-handler', methods=['GET', 'POST'])
 def handle_matrix():

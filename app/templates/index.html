@@ -3,6 +3,22 @@
 {% block content %}
     <h1>Determinant Calculator!</h1>
     <h2>Find the determinant of any nxn matrix!</h2>
+    <p>What size would you like your matrix to be?</p>
+
+    <div class="dropdown">
+        <button class="dropbtn">n</button>
+        <div class="dropdown-content">
+          <a href="{{ url_for('matrix_size', n = 2) }}">2</a>
+          <a href="{{ url_for('matrix_size', n = 3) }}">3</a>
+          <a href="{{ url_for('matrix_size', n = 4) }}">4</a>
+          <a href="{{ url_for('matrix_size', n = 5) }}">5</a>
+          <a href="{{ url_for('matrix_size', n = 6) }}">6</a>
+          <a href="{{ url_for('matrix_size', n = 7) }}">7</a>
+          <a href="{{ url_for('matrix_size', n = 8) }}">8</a>
+          <a href="{{ url_for('matrix_size', n = 9) }}">9</a>
+        </div>
+    </div>
+    <br><br>
     <form action="/matrix-handler" method="post">
         {% for row in range(n) %}
             {% for col in range(n) %}
