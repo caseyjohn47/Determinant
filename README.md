@@ -18,8 +18,12 @@ Set up a basic web application using flask and python.
 
 Added functionality to the web application so that it could find the determinant of any 3x3 matrix.
 
+### Session Four
+
+Added simple error handling for non-integer inputs.
+
 ## TO DO
 
 - Allow the user to select the size of the matrix
-- Error handling for non integer inputs
 - Clean up the UI to make it look nicer
+- Security?

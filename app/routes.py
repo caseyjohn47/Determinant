@@ -11,8 +11,6 @@ def index():
 # Handle the matrix
 @app.route('/matrix-handler', methods=['GET', 'POST'])
 def handle_matrix():
-    if request:
-        flash("request exists")
     n = 3
     matrix = [[0 for j in range(n)] for k in range(n)]
     for x in range(n):
@@ -20,7 +18,12 @@ def handle_matrix():
             row = str(x)
             col = str(y)
             id = row + "_" + col
-            matrix[x][y] = int(request.form.get(id))
+            try:
+                int(request.form.get(id))
+                matrix[x][y] = int(request.form.get(id))
+            except ValueError:
+                flash("ERROR: An input was not acceptable!")
+                return redirect(url_for('index'))
     determinant = main.det(matrix, n)
     flash("The determinant is " + str(determinant))
     return redirect(url_for('index'))
