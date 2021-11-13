@@ -3,4 +3,14 @@
 {% block content %}
     <h1>Determinant Calculator!</h1>
     <h2>Find the determinant of any nxn matrix!</h2>
+    <form action="/matrix-handler" method="post">
+        {% for row in range(n) %}
+            {% for col in range(n) %}
+                <input type="text" id="{{ row }}_{{ col }}" name="{{ row }}_{{ col }}" >
+            {% endfor %}
+            <br>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Submit">
+    </form>
 {% endblock %}
