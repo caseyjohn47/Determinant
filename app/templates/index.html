@@ -6,7 +6,7 @@
     <p>What size would you like your matrix to be?</p>
 
     <div class="dropdown">
-        <button class="dropbtn">n</button>
+        <button class="dropbtn">Size</button>
         <div class="dropdown-content">
           <a href="{{ url_for('matrix_size', n = 2) }}">2</a>
           <a href="{{ url_for('matrix_size', n = 3) }}">3</a>
@@ -26,6 +26,7 @@
             {% endfor %}
             <br>
         {% endfor %}
+        <input name='n' type='hidden' value='{{n}}'>
         <br>
         <input type="submit" value="Submit">
     </form>

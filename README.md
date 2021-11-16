@@ -26,6 +26,10 @@ Added simple error handling for non-integer inputs.
 
 Added functionality so that the user can select n for the matrix.
 
+### Session Six
+
+Added functionality so any size works and matrix stays the same size after submitting.
+
 ## TO DO
 
 - Clean up the UI to make it look nicer
