@@ -22,7 +22,11 @@
     <form action="/matrix-handler" method="post">
         {% for row in range(n) %}
             {% for col in range(n) %}
-                <input type="text" id="{{ row }}_{{ col }}" name="{{ row }}_{{ col }}" >
+                {% if matrix %}
+                    <input type="text" id="{{ row }}_{{ col }}" name="{{ row }}_{{ col }}", value="{{ matrix[row][col] }}" >
+                {% else %}
+                    <input type="text" id="{{ row }}_{{ col }}" name="{{ row }}_{{ col }}" >
+                {% endif %}
             {% endfor %}
             <br>
         {% endfor %}

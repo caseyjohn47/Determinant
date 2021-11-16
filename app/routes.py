@@ -14,10 +14,11 @@ def matrix_size(n):
     return render_template("index.html", title='Home', n=n)
 
 
-# Handle the matrix
+# Handle the matrix function
 @app.route('/matrix-handler', methods=['GET', 'POST'])
 def handle_matrix():
     n = int(request.form.get('n'))
+    valid = True
     matrix = [[0 for j in range(n)] for k in range(n)]
     for x in range(n):
         for y in range(n):
@@ -28,8 +29,11 @@ def handle_matrix():
                 int(request.form.get(id))
                 matrix[x][y] = int(request.form.get(id))
             except ValueError:
-                flash("ERROR: An input was not acceptable!")
-                return redirect(url_for('matrix_size', n=n))
-    determinant = main.det(matrix, n)
-    flash("The determinant is " + str(determinant))
-    return redirect(url_for('matrix_size', n=n))
+                valid = False
+                matrix[x][y] = 0
+    if (valid):
+        determinant = main.det(matrix, n)
+        flash("The determinant is " + str(determinant))
+    else:
+        flash("Input was invalid. Try again.")
+    return render_template("index.html", title='Home', n=n, matrix=matrix)
