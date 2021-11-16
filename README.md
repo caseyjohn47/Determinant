@@ -29,7 +29,7 @@ Added functionality so that the user can select n for the matrix.
 ### Session Six
 
 Added functionality so any size works and matrix stays the same size after submitting. Also, when the user selects
-submit, the matrix retains the values previously entered.
+submit, the matrix retains the values previously entered. Result now displays without using flash.
 
 ## TO DO
 

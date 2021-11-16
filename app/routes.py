@@ -19,6 +19,7 @@ def matrix_size(n):
 def handle_matrix():
     n = int(request.form.get('n'))
     valid = True
+    result = ""
     matrix = [[0 for j in range(n)] for k in range(n)]
     for x in range(n):
         for y in range(n):
@@ -33,7 +34,7 @@ def handle_matrix():
                 matrix[x][y] = 0
     if (valid):
         determinant = main.det(matrix, n)
-        flash("The determinant is " + str(determinant))
+        result = "The determinant is " + str(determinant)
     else:
-        flash("Input was invalid. Try again.")
-    return render_template("index.html", title='Home', n=n, matrix=matrix)
+        result = "Input was invalid. Please try again."
+    return render_template("index.html", title='Home', n=n, matrix=matrix, result=result)
