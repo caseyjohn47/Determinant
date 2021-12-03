@@ -25,7 +25,13 @@ Added functionality so that the user can select n for the matrix.
 Added functionality so any size works and matrix stays the same size after submitting. Also, when the user selects
 submit, the matrix retains the values previously entered. Result now displays without using flash.
 
+### Session Seven
+
+Began implementing functionality for orthogonality. This includes checking if set is orthogonal and 
+orthonormalizing sets.
+
 ## TO DO
 
 - Clean up the UI to make it look nicer
 - Security?
+- Make UI for the orthogonality stuff

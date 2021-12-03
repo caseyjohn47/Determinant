@@ -1,5 +1,10 @@
 # Casey Lewis
+# Linear Algebra Functions
 # Finding the determinant of a n x n matrix using a recursive function
+# Determine if a set of vectors is orthogonal
+# Find norm of vector and orthonormalize sets
+
+import math
 
 
 # get the determinant
@@ -69,3 +74,64 @@ def new_matrix(matrix, row, column, length):
 
     # return new matrix
     return smaller_matrix
+
+
+# check if a matrix is orthogonal
+# every ROW is a vector
+# checks if their dot products are 0
+def is_orthogonal_set(matrix):
+    # variables for row and column lengths
+    rows = len(matrix)
+    cols = len(matrix[0])
+    # loop through matrix and for each one, check if orthogonal to all other
+    for curr_row_num in range(rows-1):
+        curr_row = matrix[curr_row_num]
+        for x in range(curr_row_num+1, rows):
+            next_row = matrix[x]
+            if not is_orthogonal(curr_row, next_row):
+                return False
+    return True
+
+
+# checks if two vectors are orthogonal
+# their dot product must equal 0
+def is_orthogonal(vector1, vector2):
+    total = 0
+    # loop through each value in vectors and multiply and add to total
+    for x in range(len(vector1)):
+        total = total + (vector1[x] * vector2[x])
+    if total == 0:
+        return True
+    else:
+        return False
+
+
+# find the norm of a vector
+# square root of every value in the vector squared then added together
+def find_norm(vector):
+    total = 0
+    for x in vector:
+        total = total + (x * x)
+    total = math.sqrt(total)
+    return total
+
+
+# normalize a vector
+# divide vector by the norm
+def normalize_vector(vector):
+    norm = find_norm(vector)
+    vec = []
+    for x in vector:
+        vec.append(x * (1/norm))
+    return vec
+
+
+# every row is a vector
+def orthonormalize_set(matrix):
+    new_matrix = []
+    if is_orthogonal_set(matrix):
+        for vector in matrix:
+            vec = normalize_vector(vector)
+            new_matrix.append(vec)
+        return new_matrix
+    return matrix
