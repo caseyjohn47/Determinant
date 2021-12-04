@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Orthonormalize a set!</h1>
+    <h2>Orthonormalize any set of orthogonal vectors! </h2>
+
+    <p>How many vectors are in your set?</p>
+    <div class="dropdown">
+        <button class="dropbtn">Vectors</button>
+        <div class="dropdown-content">
+          <a href="{{ url_for('ortho_size', size = size, vectors = 2) }}">2</a>
+          <a href="{{ url_for('ortho_size', size = size, vectors = 3) }}">3</a>
+          <a href="{{ url_for('ortho_size', size = size, vectors = 4) }}">4</a>
+          <a href="{{ url_for('ortho_size', size = size, vectors = 5) }}">5</a>
+          <a href="{{ url_for('ortho_size', size = size, vectors = 6) }}">6</a>
+          <a href="{{ url_for('ortho_size', size = size, vectors = 7) }}">7</a>
+          <a href="{{ url_for('ortho_size', size = size, vectors = 8) }}">8</a>
+          <a href="{{ url_for('ortho_size', size = size, vectors = 9) }}">9</a>
+        </div>
+    </div>
+    <br><br>
+
+    <p>What size would you like your vectors to be?</p>
+    <div class="dropdown">
+        <button class="dropbtn">Size</button>
+        <div class="dropdown-content">
+          <a href="{{ url_for('ortho_size', size = 2, vectors = vectors) }}">2</a>
+          <a href="{{ url_for('ortho_size', size = 3, vectors = vectors) }}">3</a>
+          <a href="{{ url_for('ortho_size', size = 4, vectors = vectors) }}">4</a>
+          <a href="{{ url_for('ortho_size', size = 5, vectors = vectors) }}">5</a>
+          <a href="{{ url_for('ortho_size', size = 6, vectors = vectors) }}">6</a>
+          <a href="{{ url_for('ortho_size', size = 7, vectors = vectors) }}">7</a>
+          <a href="{{ url_for('ortho_size', size = 8, vectors = vectors) }}">8</a>
+          <a href="{{ url_for('ortho_size', size = 9, vectors = vectors) }}">9</a>
+        </div>
+    </div>
+    <br><br>
+
+    <form action="/orthonormalize-set" method="post">
+        {% for row in range(size) %}
+            {% for col in range(vectors) %}
+                {% if matrix %}
+                    <input type="text" id="{{ row }}_{{ col }}" name="{{ row }}_{{ col }}", value="{{ matrix[col][row] }}" >
+                {% else %}
+                    <input type="text" id="{{ row }}_{{ col }}" name="{{ row }}_{{ col }}" >
+                {% endif %}
+            {% endfor %}
+            <br>
+        {% endfor %}
+        <input name='vectors' type='hidden' value='{{vectors}}'>
+        <input name='size' type='hidden' value='{{size}}'>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if valid %}
+        <h2>Result:</h2>
+        <br>
+        <h3>
+        {% for x in range(vectors) %}
+            {
+            {% for y in range(size) %}
+                {{ normal[x][y] }},
+            {% endfor %}
+            }, 
+        {% endfor %}
+        </h3>
+
+    {% elif result %}
+        <h2>Result: {{ result }}</h2>
+    {% endif %}
+
+{% endblock %}

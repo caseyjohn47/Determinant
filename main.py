@@ -129,9 +129,7 @@ def normalize_vector(vector):
 # every row is a vector
 def orthonormalize_set(matrix):
     new_matrix = []
-    if is_orthogonal_set(matrix):
-        for vector in matrix:
-            vec = normalize_vector(vector)
-            new_matrix.append(vec)
-        return new_matrix
-    return matrix
+    for vector in matrix:
+        vec = normalize_vector(vector)
+        new_matrix.append(vec)
+    return new_matrix
