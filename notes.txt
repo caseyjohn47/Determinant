@@ -28,10 +28,9 @@ submit, the matrix retains the values previously entered. Result now displays wi
 ### Session Seven
 
 Began implementing functionality for orthogonality. This includes checking if set is orthogonal and 
-orthonormalizing sets.
+orthonormalizing sets. Then, I implemented the orthonormalization into the web application on its own page.
 
 ## TO DO
 
 - Clean up the UI to make it look nicer
 - Security?
-- Make UI for the orthogonality stuff
