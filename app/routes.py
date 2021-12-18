@@ -40,23 +40,23 @@ def handle_matrix():
     return render_template("index.html", title='Determinant', n=n, matrix=matrix, result=result)
 
 
-# default orthonormalize page
-@app.route('/orthonormalize', methods=['GET', 'POST'])
-def orthonormalize():
+# default normalize page
+@app.route('/normalize', methods=['GET', 'POST'])
+def normalize():
     size = 2
     vectors = 2
-    return render_template("orthonormalize.html", title='Orthonormalize', size=size, vectors=vectors)
+    return render_template("normalize.html", title='Normalize', size=size, vectors=vectors)
 
 
-# resize orthonormalize page
-@app.route('/orthonormalize/<int:size>/<int:vectors>', methods=['GET', 'POST'])
-def ortho_size(size, vectors):
-    return render_template("orthonormalize.html", title='Orthonormalize', size=size, vectors=vectors)
+# resize normalize page
+@app.route('/normalize/<int:size>/<int:vectors>', methods=['GET', 'POST'])
+def norm_size(size, vectors):
+    return render_template("normalize.html", title='Normalize', size=size, vectors=vectors)
 
 
-# Handle the orthonormalize function
-@app.route('/orthonormalize-set', methods=['GET', 'POST'])
-def orthonormalize_set():
+# Handle the normalize function
+@app.route('/normalize-set', methods=['GET', 'POST'])
+def normalize_set():
     vectors = int(request.form.get('vectors'))
     size = int(request.form.get('size'))
     valid = True
@@ -82,15 +82,11 @@ def orthonormalize_set():
             zero_vector = True
             valid = False
     if (valid):
-        if main.is_orthogonal_set(matrix):
-            normal = main.orthonormalize_set(matrix)
-            result = "The determinant is " + str(normal)
-        else:
-            result = "This is not orthogonal"
-            valid = False
+        normal = main.normalize_set(matrix)
+        result = "The determinant is " + str(normal)
     elif (zero_vector):
         result = "The zero vector can't be normalized"
     else:
         result = "Input was invalid. Please try again."
         valid = False
-    return render_template("orthonormalize.html", title='Orthonormalize', size=size, vectors=vectors, matrix=matrix, result=result, valid=valid, normal=normal)
+    return render_template("normalize.html", title='Normalize', size=size, vectors=vectors, matrix=matrix, result=result, valid=valid, normal=normal)

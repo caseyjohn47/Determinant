@@ -127,7 +127,7 @@ def normalize_vector(vector):
 
 
 # every row is a vector
-def orthonormalize_set(matrix):
+def normalize_set(matrix):
     new_matrix = []
     for vector in matrix:
         vec = normalize_vector(vector)
