@@ -112,12 +112,10 @@ def check_orthogonal():
     vectors = int(request.form.get('vectors'))
     size = int(request.form.get('size'))
     valid = True
-    zero_vector = False
     result = ""
     matrix = [[0 for j in range(size)] for k in range(vectors)]
     normal = []
     for x in range(vectors):
-        not_zero_check = False
         for y in range(size):
             row = str(y)
             col = str(x)
@@ -125,22 +123,15 @@ def check_orthogonal():
             try:
                 int(request.form.get(id))
                 matrix[x][y] = int(request.form.get(id))
-                if matrix[x][y] != 0:
-                    not_zero_check = True
             except ValueError:
                 valid = False
                 matrix[x][y] = 0
-        if not not_zero_check:
-            zero_vector = True
-            valid = False
     if (valid):
         if (main.is_orthogonal_set(matrix)):
             result = "The set is orthogonal!"
         else:
             result = "The set is not orthogonal!"
-    elif (zero_vector):
-        result = "The zero vector can't be normalized."
     else:
         result = "Input was invalid. Please try again."
         valid = False
-    return render_template("orthogonals.html", title='Orthogonals', size=size, vectors=vectors, matrix=matrix, result=result, valid=valid, normal=normal)
+    return render_template("orthogonals.html", title='Orthogonals', size=size, vectors=vectors, matrix=matrix, result=result, valid=True, normal=normal)
