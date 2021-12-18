@@ -1,13 +1,16 @@
 <html>
     <head>
         {% if title %}
-        <title>Determinant - {{ title }}</title>
+        <title>{{ title }}</title>
         {% else %}
-        <title>Determinant</title>
+        <title>Linear Algebra</title>
         {% endif %}
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
+        <a href="{{ url_for('index') }}">Determinant</a>
+        <a href="{{ url_for('normalize') }}">Normalize</a>
+        <a href="{{ url_for('orthogonals') }}">Orthogonals</a>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
